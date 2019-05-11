@@ -26,4 +26,7 @@ router.put('/location/:id', ValidateLocation.validateLocationExists,
   ValidateLocation.validateMales, ErrorHandler.handleErrors,
   LocationController.UpdateLocation);
 
+router.delete('/location/:id', ValidateLocation.validateLocationExists,
+  LocationController.DeleteLocation);
+
 export default router;

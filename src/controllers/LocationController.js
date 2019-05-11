@@ -67,4 +67,25 @@ export default class LocationController {
       });
     }
   }
+
+  /**
+   * static method to delete a location
+   * @param {object} request
+   * @param {object} response
+   * @returns {object} location object or error message
+   */
+  static async DeleteLocation(request, response) {
+    const { id } = request.params;
+    try {
+      const where = 'where id = $1';
+      await LocationQueries.DeleteLocations(where, [id]);
+      return response.status(200)
+        .json({ message: 'Location deleted successfully' });
+    } catch (error) {
+      console.log('error: ', error);
+      return response.status(500).json({
+        message: 'Internal server error',
+      });
+    }
+  }
 }
