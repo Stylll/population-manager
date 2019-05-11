@@ -25,10 +25,11 @@ app.use((request, response) => {
   response.status(404).json({ message: '404 Not Found' });
 });
 
-
-// Listen at designated port
-app.listen(port, () => {
-  console.log(`App running on ${address}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  // Listen at designated port
+  app.listen(port, () => {
+    console.log(`App running on ${address}`);
+  });
+}
 
 export default app;

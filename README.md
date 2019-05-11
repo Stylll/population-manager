@@ -20,7 +20,11 @@ https://www.pivotaltracker.com/n/projects/2346610
 
 
 ## API Endpoints
+<table>
+<tr><th>HTTP VERB</th><th>ENDPOINTS</th><th>DESCRIPTION</th><th>BODY PARAMS</th></tr>
+<tr><td>POST</td><td>/api/v1/location</td><td>Creates a location</td><td>location, no_of_males, no_of_females</td></tr>
 
+</table>
 
 
 # Getting Started
