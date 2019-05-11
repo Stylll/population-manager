@@ -119,4 +119,27 @@ describe('Test suite for Location controller', () => {
         });
     });
   });
+
+  describe('Test suite for Location controller - DELETE:', () => {
+    it('should return error if location does not exist', (done) => {
+      request(app)
+        .delete('/api/v1/location/99')
+        .send({})
+        .end((error, response) => {
+          expect(response.status).toBe(404);
+          expect(response.body.message).toBe('Location with id: 99 does not exist');
+          done();
+        });
+    });
+    it('should delete a location', (done) => {
+      request(app)
+        .delete('/api/v1/location/1')
+        .send({})
+        .end((error, response) => {
+          expect(response.status).toBe(200);
+          expect(response.body.message).toBe('Location deleted successfully');
+          done();
+        });
+    });
+  });
 });
