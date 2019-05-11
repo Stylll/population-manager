@@ -25,6 +25,7 @@ https://www.pivotaltracker.com/n/projects/2346610
 <tr><td>POST</td><td>/api/v1/location</td><td>Creates a location</td><td>location, no_of_males, no_of_females</td></tr>
 <tr><td>PUT</td><td>/api/v1/location/:id</td><td>Updates a location</td><td>location, no_of_males, no_of_females</td></tr>
 <tr><td>DELETE</td><td>/api/v1/location/:id</td><td>Deletes a location</td><td></td></tr>
+<tr><td>GET</td><td>/api/v1/location</td><td>Retrieves the list of locations</td><td></td></tr>
 
 </table>
 
