@@ -7,7 +7,9 @@
     "test": "jest --forceExit",
     "start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js",
     "run:migrate": "NODE_ENV=development babel-node src/database/index.js",
-    "run:test-migrate": "NODE_ENV=test babel-node src/database/index.js"
+    "run:test-migrate": "NODE_ENV=test babel-node src/database/index.js",
+    "run:prod-migrate": "NODE_ENV=production babel-node src/database/index.js",
+    "heroku:app": "babel-node src/index.js"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
