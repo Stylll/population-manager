@@ -21,4 +21,9 @@ router.post('/location', ValidateLocation.validateLocation, ValidateLocation.val
   ValidateLocation.validateMales, ErrorHandler.handleErrors,
   LocationController.CreateLocation);
 
+router.put('/location/:id', ValidateLocation.validateLocationExists,
+  ValidateLocation.validateLocation, ValidateLocation.validateFemales,
+  ValidateLocation.validateMales, ErrorHandler.handleErrors,
+  LocationController.UpdateLocation);
+
 export default router;

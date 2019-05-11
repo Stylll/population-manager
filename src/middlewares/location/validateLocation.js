@@ -108,6 +108,29 @@ class ValidateLocation {
 
     return next();
   }
+
+  /**
+   * static method to validate a location exists
+   * @param {object} request
+   * @param {object} response
+   * @param {object} next
+   * @returns {object|function} error object | next function
+   */
+  static async validateLocationExists(request, response, next) {
+    const { id } = request.params;
+    try {
+      const where = 'where id = $1';
+      const values = [id];
+      const dbResponse = await LocationQueries.GetLocations(where, values);
+      if (!dbResponse.rows.length) {
+        return response.status(404).json({ message: `Location with id: ${id} does not exist` });
+      }
+    } catch (error) {
+      console.log('error: ', error);
+    }
+
+    return next();
+  }
 }
 
 export default ValidateLocation;
