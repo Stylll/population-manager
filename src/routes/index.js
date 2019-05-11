@@ -1,5 +1,8 @@
 import '@babel/polyfill';
 import express from 'express';
+import ErrorHandler from '../middlewares/ErrorHandler';
+import ValidateLocation from '../middlewares/location/validateLocation';
+import LocationController from '../controllers/LocationController';
 
 const router = express.Router();
 
@@ -13,5 +16,9 @@ router.get('/', (request, response) => {
   response.status(200)
     .json({ message: 'Welcome to Population Manager API version 1.' });
 });
+
+router.post('/location', ValidateLocation.validateLocation, ValidateLocation.validateFemales,
+  ValidateLocation.validateMales, ErrorHandler.handleErrors,
+  LocationController.CreateLocation);
 
 export default router;
