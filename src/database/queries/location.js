@@ -50,6 +50,22 @@ export default class LocationQueries {
   }
 
   /**
+   * static method to get locations with the total residents in the database
+   * @param {stirng} where
+   * @param {array} values
+   * @returns {object} query response
+   */
+  static async GetTotalLocations() {
+    const query = 'select id, location, no_of_males, no_of_females, no_of_males + no_of_females total_residents from location order by created_at;';
+    try {
+      const response = await Client.query(query, []);
+      return response;
+    } catch (error) {
+      throw (error);
+    }
+  }
+
+  /**
    * static method to delete locations from the database
    * @param {stirng} where
    * @param {array} values

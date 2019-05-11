@@ -88,4 +88,19 @@ export default class LocationController {
       });
     }
   }
+
+  static async GetLocations(request, response) {
+    try {
+      const dbResponse = await LocationQueries.GetTotalLocations();
+      const locations = [...dbResponse.rows];
+
+      return response.status(200)
+        .json({ data: locations, message: 'Location list retrieved successfully' });
+    } catch (error) {
+      console.log('error: ', error);
+      return response.status(500).json({
+        message: 'Internal server error',
+      });
+    }
+  }
 }

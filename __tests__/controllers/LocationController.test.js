@@ -120,6 +120,31 @@ describe('Test suite for Location controller', () => {
     });
   });
 
+  describe('Test suite for Location controller - GET:', () => {
+    beforeAll(async (done) => {
+      await LocationQueries.CreateLocation(['Kaduna', '200', '100']);
+      await LocationQueries.CreateLocation(['London', '230', '400']);
+      await LocationQueries.CreateLocation(['Ibadan', '100', '150']);
+      done();
+    });
+    it('should return a list of locations with total residents count', (done) => {
+      request(app)
+        .get('/api/v1/location')
+        .send({})
+        .end((error, response) => {
+          expect(response.status).toBe(200);
+          expect(response.body.data.length).toBe(4);
+          expect(response.body.message).toBe('Location list retrieved successfully');
+          const location = response.body.data[1];
+          expect(location.location).toBe('Kaduna');
+          expect(location.no_of_males).toBe(200);
+          expect(location.no_of_females).toBe(100);
+          expect(location.total_residents).toBe(300);
+          done();
+        });
+    });
+  });
+
   describe('Test suite for Location controller - DELETE:', () => {
     it('should return error if location does not exist', (done) => {
       request(app)
