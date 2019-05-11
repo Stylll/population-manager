@@ -17,6 +17,21 @@ export default class LocationQueries {
   }
 
   /**
+   * static method to update a location in the database
+   * @param {array} values
+   * @returns {object} query response
+   */
+  static async UpdateLocation(values) {
+    const query = 'update location set location = $1, no_of_males = $2, no_of_females = $3 where id = $4 RETURNING *';
+    try {
+      const response = await Client.query(query, values);
+      return response;
+    } catch (error) {
+      throw (error);
+    }
+  }
+
+  /**
    * static method to get locations in the database
    * @param {stirng} where
    * @param {array} values
@@ -46,6 +61,22 @@ export default class LocationQueries {
     query += ';';
     try {
       const response = await Client.query(query, values);
+      return response;
+    } catch (error) {
+      throw (error);
+    }
+  }
+
+  /**
+   * static method to truncate locations from the database
+   * @param {stirng} where
+   * @param {array} values
+   * @returns {object} query response
+   */
+  static async TruncateLocations() {
+    const query = 'TRUNCATE TABLE location RESTART IDENTITY;';
+    try {
+      const response = await Client.query(query, []);
       return response;
     } catch (error) {
       throw (error);
